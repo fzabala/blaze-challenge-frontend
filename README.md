@@ -12,3 +12,8 @@ This is the frontend project for https://github.com/fzabala/blaze-challenge-back
 - Run the project
   - `npm start`
   
+## How to test it?
+
+- Run the test command
+  - `npm run test`
+  
