@@ -83,28 +83,26 @@ export const HomePage = () => {
     return <div>
       <section>
         <label htmlFor="select-team">Teams</label>
-        <select id="select-team" value={selectedTeam} onChange={(onSelectTeamChangeHandler)}>
+        <select data-testid="select-team" id="select-team" value={selectedTeam} onChange={(onSelectTeamChangeHandler)}>
             <option value="0">- Select a team -</option>
             {teams.map(team => <option key={`team-${team.team_key}`} value={team.team_key}>{team.team_name}</option>)}
         </select>
       </section>
       {!!selectedTeam && (
-        <>
-          <div className="main-wrapper">
+        <div className="main-wrapper">
           <section>
             <h3>Players</h3>
             {loadingPlayers && <p>Loading players...</p>}
-            {!loadingPlayers && !fetchErrorPlayers && (<Table headers={playersHeaders} rows={playersRows} />)}
-            {!loadingPlayers && fetchErrorPlayers && (<p>Something went wrong: {fetchErrorPlayers.message}</p>)}
+            {!loadingPlayers && !fetchErrorPlayers && (<Table data-testid="players-table" headers={playersHeaders} rows={playersRows} />)}
+            {!loadingPlayers && fetchErrorPlayers && (<p>Players error: {fetchErrorPlayers.message}</p>)}
           </section>
           <section>
             <h3>Matches</h3>
-            {loadingMatches && <p>Loading players...</p>}
-            {!loadingMatches && (<Table headers={matchesHeaders} rows={matchesRows} />)}
-            {!loadingMatches && fetchErrorMatches && (<p>Something went wrong: {fetchErrorMatches.message}</p>)}
+            {loadingMatches && <p>Loading matches...</p>}
+            {!loadingMatches && !fetchErrorMatches && (<Table data-testid="matches-table" headers={matchesHeaders} rows={matchesRows} />)}
+            {!loadingMatches && fetchErrorMatches && (<p>Matches error: {fetchErrorMatches.message}</p>)}
           </section>
         </div>
-        </>
       )}
       </div>;
   };

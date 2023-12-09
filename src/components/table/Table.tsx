@@ -5,17 +5,17 @@ type TableType = {
   rows: string[][];
 }
 
-export const Table = ({headers, rows}: TableType) => {
-  return <table className="Table">
+export const Table = ({headers, rows, ...props}: TableType) => {
+  return <table className="Table" {...props}>
       <thead>
         <tr>
-          {headers.map(header => <th>{header}</th>)}
+          {headers.map((header, indexHeader) => <th key={`th-${indexHeader}`}>{header}</th>)}
         </tr>
       </thead>
       <tbody>
-        {rows.map(row => (
-          <tr>
-            {row.map(cell => <td>{cell}</td>)}
+        {rows.map((row, indexRow) => (
+          <tr key={`tr-${indexRow}`}>
+            {row.map((cell, indexCell) => <td key={`td-${indexCell}`}>{cell}</td>)}
           </tr>
         ))}
       </tbody>
